@@ -1,7 +1,15 @@
-## Answer the question
+### Answer the question
 POST http://localhost:8080/ask
 Content-Type: application/json
 
 {
   "question": "Is butterfly looks like the butter that can fly?"
+}
+
+### Capital of the state
+POST http://localhost:8080/capital
+Content-Type: application/json
+
+{
+  "stateOrCountry": "Ukraine"
 }
