@@ -25,4 +25,9 @@ public class QuestionController {
         return openAIService.getCapital(request);
     }
 
+    @PostMapping("capitalWithInfo")
+    public Answer getCapitalWithInfo(@RequestBody GetCapitalRequest request) {
+        return openAIService.getCapitalWithInfo(request);
+    }
+
 }
