@@ -1,6 +1,8 @@
 package net.shyshkin.study.springaiintro.service;
 
 import lombok.RequiredArgsConstructor;
+import net.shyshkin.study.springaiintro.model.Answer;
+import net.shyshkin.study.springaiintro.model.Question;
 import org.springframework.ai.chat.ChatClient;
 import org.springframework.ai.chat.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
@@ -19,6 +21,11 @@ public class OpenAIServiceImpl implements OpenAIService {
         Prompt prompt = promptTemplate.create();
         ChatResponse response = chatClient.call(prompt);
         return response.getResult().getOutput().getContent();
+    }
+
+    @Override
+    public Answer getAnswer(Question question) {
+        return new Answer(getAnswer(question.question()));
     }
 
 }

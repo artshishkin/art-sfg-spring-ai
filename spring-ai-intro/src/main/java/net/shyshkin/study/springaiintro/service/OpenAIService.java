@@ -1,7 +1,12 @@
 package net.shyshkin.study.springaiintro.service;
 
+import net.shyshkin.study.springaiintro.model.Answer;
+import net.shyshkin.study.springaiintro.model.Question;
+
 public interface OpenAIService {
 
     String getAnswer(String question);
+
+    Answer getAnswer(Question question);
 
 }
