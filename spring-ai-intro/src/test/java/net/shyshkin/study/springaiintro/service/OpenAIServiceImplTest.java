@@ -13,7 +13,9 @@ class OpenAIServiceImplTest {
     @Test
     void getAnswer() {
         //given
-        String question = "Give me a dad joke";
+        String question = """
+                I have a compressed folder 123.tar.zst. I want to count files in that folder without extracting to the disk.
+                """;
 
         //when
         String answer = openAIService.getAnswer(question);
