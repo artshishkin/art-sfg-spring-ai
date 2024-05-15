@@ -2,10 +2,7 @@ package net.shyshkin.study.springaiintro.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import net.shyshkin.study.springaiintro.model.Answer;
-import net.shyshkin.study.springaiintro.model.GetCapitalRequest;
-import net.shyshkin.study.springaiintro.model.GetCapitalResponse;
-import net.shyshkin.study.springaiintro.model.Question;
+import net.shyshkin.study.springaiintro.model.*;
 import org.springframework.ai.chat.ChatClient;
 import org.springframework.ai.chat.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
@@ -66,6 +63,20 @@ public class OpenAIServiceImpl implements OpenAIService {
         Prompt prompt = promptTemplate.create(Map.of("stateOrCountry", request.stateOrCountry()));
         ChatResponse response = chatClient.call(prompt);
         return new Answer(response.getResult().getOutput().getContent());
+    }
+
+    @Override
+    public GetCapitalWithInfoResponse getCapitalWithInfoJson(GetCapitalRequest request) {
+
+        BeanOutputParser<GetCapitalWithInfoResponse> parser = new BeanOutputParser<>(GetCapitalWithInfoResponse.class);
+        String format = parser.getFormat();
+        PromptTemplate promptTemplate = new PromptTemplate(getCapitalPrompt);
+        Prompt prompt = promptTemplate.create(Map.of(
+                "stateOrCountry", request.stateOrCountry(),
+                "format", format
+        ));
+        ChatResponse response = chatClient.call(prompt);
+        return parser.parse(response.getResult().getOutput().getContent());
     }
 
 }

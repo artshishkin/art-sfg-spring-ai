@@ -1,11 +1,9 @@
 package net.shyshkin.study.springaiintro.controller;
 
 import lombok.RequiredArgsConstructor;
-import net.shyshkin.study.springaiintro.model.Answer;
-import net.shyshkin.study.springaiintro.model.GetCapitalRequest;
-import net.shyshkin.study.springaiintro.model.GetCapitalResponse;
-import net.shyshkin.study.springaiintro.model.Question;
+import net.shyshkin.study.springaiintro.model.*;
 import net.shyshkin.study.springaiintro.service.OpenAIService;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,6 +27,11 @@ public class QuestionController {
     @PostMapping("capitalWithInfo")
     public Answer getCapitalWithInfo(@RequestBody GetCapitalRequest request) {
         return openAIService.getCapitalWithInfo(request);
+    }
+
+    @PostMapping(value = "capitalWithInfo", produces = MediaType.APPLICATION_JSON_VALUE)
+    public GetCapitalWithInfoResponse getCapitalWithInfoJson(@RequestBody GetCapitalRequest request) {
+        return openAIService.getCapitalWithInfoJson(request);
     }
 
 }

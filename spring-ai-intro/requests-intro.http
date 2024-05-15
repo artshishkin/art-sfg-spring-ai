@@ -21,3 +21,13 @@ Content-Type: application/json
 {
   "stateOrCountry": "Lithuania"
 }
+
+### Capital with info - JSON output
+POST http://localhost:8080/capitalWithInfo
+Content-Type: application/json
+Accept: application/json
+
+{
+  "stateOrCountry": "Poland"
+}
+
