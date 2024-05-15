@@ -1,6 +1,8 @@
 package net.shyshkin.study.springaiintro.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import net.shyshkin.study.springaiintro.model.Answer;
 import net.shyshkin.study.springaiintro.model.GetCapitalRequest;
 import net.shyshkin.study.springaiintro.model.Question;
@@ -19,6 +21,7 @@ import java.util.Map;
 public class OpenAIServiceImpl implements OpenAIService {
 
     private final ChatClient chatClient;
+    private final ObjectMapper objectMapper;
 
     @Value("classpath:templates/get-capital-prompt.st")
     private Resource getCapitalPrompt;
@@ -39,13 +42,16 @@ public class OpenAIServiceImpl implements OpenAIService {
         return new Answer(getAnswer(question.question()));
     }
 
+    @SneakyThrows
     @Override
     public Answer getCapital(GetCapitalRequest request) {
         //PromptTemplate promptTemplate = new PromptTemplate("What is the capital of {stateOrCountry}?");
         PromptTemplate promptTemplate = new PromptTemplate(getCapitalPrompt);
         Prompt prompt = promptTemplate.create(Map.of("stateOrCountry", request.stateOrCountry()));
         ChatResponse response = chatClient.call(prompt);
-        return new Answer(response.getResult().getOutput().getContent());
+        String content = response.getResult().getOutput().getContent();
+
+        return objectMapper.readValue(content, Answer.class);
     }
 
     @Override
