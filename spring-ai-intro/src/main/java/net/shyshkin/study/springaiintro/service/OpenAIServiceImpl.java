@@ -2,14 +2,15 @@ package net.shyshkin.study.springaiintro.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import net.shyshkin.study.springaiintro.model.Answer;
 import net.shyshkin.study.springaiintro.model.GetCapitalRequest;
+import net.shyshkin.study.springaiintro.model.GetCapitalResponse;
 import net.shyshkin.study.springaiintro.model.Question;
 import org.springframework.ai.chat.ChatClient;
 import org.springframework.ai.chat.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.chat.prompt.PromptTemplate;
+import org.springframework.ai.parser.BeanOutputParser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -42,16 +43,21 @@ public class OpenAIServiceImpl implements OpenAIService {
         return new Answer(getAnswer(question.question()));
     }
 
-    @SneakyThrows
     @Override
-    public Answer getCapital(GetCapitalRequest request) {
+    public GetCapitalResponse getCapital(GetCapitalRequest request) {
         //PromptTemplate promptTemplate = new PromptTemplate("What is the capital of {stateOrCountry}?");
+        BeanOutputParser<GetCapitalResponse> parser = new BeanOutputParser<>(GetCapitalResponse.class);
+        String format = parser.getFormat();
+
         PromptTemplate promptTemplate = new PromptTemplate(getCapitalPrompt);
-        Prompt prompt = promptTemplate.create(Map.of("stateOrCountry", request.stateOrCountry()));
+        Prompt prompt = promptTemplate.create(Map.of(
+                "stateOrCountry", request.stateOrCountry(),
+                "format", format
+        ));
         ChatResponse response = chatClient.call(prompt);
         String content = response.getResult().getOutput().getContent();
 
-        return objectMapper.readValue(content, Answer.class);
+        return parser.parse(content);
     }
 
     @Override

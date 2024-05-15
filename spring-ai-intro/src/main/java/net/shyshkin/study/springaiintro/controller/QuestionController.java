@@ -3,6 +3,7 @@ package net.shyshkin.study.springaiintro.controller;
 import lombok.RequiredArgsConstructor;
 import net.shyshkin.study.springaiintro.model.Answer;
 import net.shyshkin.study.springaiintro.model.GetCapitalRequest;
+import net.shyshkin.study.springaiintro.model.GetCapitalResponse;
 import net.shyshkin.study.springaiintro.model.Question;
 import net.shyshkin.study.springaiintro.service.OpenAIService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +22,7 @@ public class QuestionController {
     }
 
     @PostMapping("capital")
-    public Answer getCapital(@RequestBody GetCapitalRequest request) {
+    public GetCapitalResponse getCapital(@RequestBody GetCapitalRequest request) {
         return openAIService.getCapital(request);
     }
 
