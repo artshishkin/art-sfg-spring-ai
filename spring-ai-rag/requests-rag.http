@@ -1,0 +1,7 @@
+### Answer the question
+POST http://localhost:8080/ask
+Content-Type: application/json
+
+{
+  "question": "Why are we using the Milvus Vector Database?"
+}
