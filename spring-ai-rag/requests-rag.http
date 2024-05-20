@@ -21,3 +21,11 @@ Content-Type: application/json
 {
   "question": "How many parts of movie Avengers?"
 }
+
+### Avengers movie count
+POST http://localhost:8080/ask
+Content-Type: application/json
+
+{
+  "question": "How many movies about the Avengers?"
+}
