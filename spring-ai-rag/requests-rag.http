@@ -3,5 +3,21 @@ POST http://localhost:8080/ask
 Content-Type: application/json
 
 {
-  "question": "Why are we using the Milvus Vector Database?"
+  "question": "What is the movie `Avengers: Infinity War` about?"
+}
+
+### Avatar question
+POST http://localhost:8080/ask
+Content-Type: application/json
+
+{
+  "question": "How many movies about Avatar exists?"
+}
+
+### Avengers
+POST http://localhost:8080/ask
+Content-Type: application/json
+
+{
+  "question": "How many parts of movie Avengers?"
 }
