@@ -7,3 +7,6 @@ spring:
 app:
   vector-store:
     path: tmp/vectorstore.json
+    documents-to-load:
+      - 'classpath:/movies500.csv'
+

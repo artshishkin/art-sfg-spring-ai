@@ -3,8 +3,10 @@ package net.shyshkin.study.springairag.config;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.Resource;
 
 import java.nio.file.Path;
+import java.util.List;
 
 @Data
 @Configuration
@@ -12,5 +14,6 @@ import java.nio.file.Path;
 public class VectorStoreProperties {
 
     private Path path;
+    private List<Resource> documentsToLoad;
 
 }
