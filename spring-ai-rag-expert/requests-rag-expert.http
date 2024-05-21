@@ -1,0 +1,32 @@
+### Sportsman 212
+POST http://localhost:8080/ask
+Content-Type: application/json
+
+{
+  "question": "What is the good truck to pull a Sportsman 212 boat?"
+}
+
+### Sportsman 232
+POST http://localhost:8080/ask
+Content-Type: application/json
+
+{
+  "question": "What is the good truck to pull a Sportsman 232 boat?"
+}
+
+### Sportsman 322
+POST http://localhost:8080/ask
+Content-Type: application/json
+
+{
+  "question": "What is the good truck to pull a Sportsman 322 boat?"
+}
+
+### Scout 380 LXF
+POST http://localhost:8080/ask
+Content-Type: application/json
+
+{
+  "question": "What is the good truck to pull a Scout 380 LXF boat?"
+}
+
