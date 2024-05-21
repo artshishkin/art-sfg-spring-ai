@@ -29,3 +29,28 @@ Content-Type: application/json
 {
   "question": "How many movies about the Avengers?"
 }
+
+### Spider Man description
+POST http://localhost:8080/ask
+Content-Type: application/json
+
+{
+  "question": "What do you know about the movie `Spider-Man: No Way Home`?"
+}
+
+### Spider Man describe
+POST http://localhost:8080/ask
+Content-Type: application/json
+
+{
+  "question": "Describe the movie `Spider-Man: No Way Home`?"
+}
+
+
+### Spider Man duration
+POST http://localhost:8080/ask
+Content-Type: application/json
+
+{
+  "question": "What is the duration of the movie `Spider-Man: No Way Home`?"
+}
