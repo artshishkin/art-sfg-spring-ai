@@ -11,5 +11,5 @@ app:
   vector-store:
     path: tmp/vectorstore.json
     documents-to-load:
-      - 'classpath:/movies500.csv'
+      - 'classpath:/movies500Trimmed.csv'
 
