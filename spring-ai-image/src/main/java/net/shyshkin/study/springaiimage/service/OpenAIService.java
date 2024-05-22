@@ -1,8 +1,13 @@
+
 package net.shyshkin.study.springaiimage.service;
 
 import lombok.RequiredArgsConstructor;
 import net.shyshkin.study.springaiimage.model.Question;
-import org.springframework.ai.image.*;
+import org.springframework.ai.image.ImageClient;
+import org.springframework.ai.image.ImageOptions;
+import org.springframework.ai.image.ImagePrompt;
+import org.springframework.ai.image.ImageResponse;
+import org.springframework.ai.openai.OpenAiImageOptions;
 import org.springframework.stereotype.Service;
 
 import java.util.Base64;
@@ -16,11 +21,13 @@ public class OpenAIService implements AIService {
     @Override
     public byte[] getImage(Question question) {
 
-        ImageOptions imageOptions = ImageOptionsBuilder.builder()
+        ImageOptions imageOptions = OpenAiImageOptions.builder()
                 .withHeight(1024)
                 .withWidth(1024)
                 .withResponseFormat("b64_json")
                 .withModel("dall-e-3")
+                .withQuality("hd") //default - standard
+                .withStyle("natural") //default - vivid
                 .build();
 
         ImagePrompt imagePrompt = new ImagePrompt(question.question(), imageOptions);

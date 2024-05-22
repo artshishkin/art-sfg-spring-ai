@@ -30,3 +30,12 @@ Content-Type: application/json
   "question": "Woman with long brown hair is falling into the red wine. She is small enough to be whole in the glass of wine. This woman is IT specialist in the field of data analytics. She is holding open laptop. She is mad and angry because she does not know what should she answer to the stupid client. There should be Power Bi Graph Dashboards on the background"
 }
 
+### Scooter girl
+POST http://localhost:8080/image
+Content-Type: application/json
+
+{
+  "question": "14-years old anime girl is making a flip on her black scooter jumping on the ramp. She is 150cm tall. She has long blondy hear and grey-blue eyes. She has baseball cap on her head. She has a t-shirt and long shorts"
+}
+
+
