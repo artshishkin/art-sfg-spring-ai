@@ -1,0 +1,23 @@
+### Weather in London
+POST http://localhost:8080/weather
+Content-Type: application/json
+
+{
+  "question": "What is the weather in London now?"
+}
+
+### Fairy tale Weather in Vilnius
+POST http://localhost:8080/weather
+Content-Type: application/json
+
+{
+  "question": "Tell me about the current weather in Vilnius as in a tale"
+}
+
+### Fairy tale Weather in Vilnius - UKR
+POST http://localhost:8080/weather
+Content-Type: application/json
+
+{
+  "question": "Tell me about the current weather in Vilnius as in a tale (in Ukrainian language)"
+}

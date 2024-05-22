@@ -10,3 +10,8 @@ spring:
 app:
   ninja-api:
     key: ${NINJA_API_KEY}
+
+logging:
+  level:
+    root: info
+    "jdk.internal.httpclient.debug": info
