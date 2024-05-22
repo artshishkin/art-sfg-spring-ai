@@ -11,6 +11,7 @@ import org.springframework.ai.chat.ChatResponse;
 import org.springframework.ai.chat.messages.Message;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.chat.prompt.PromptTemplate;
+import org.springframework.ai.chat.prompt.SystemPromptTemplate;
 import org.springframework.ai.model.ModelOptionsUtils;
 import org.springframework.ai.model.function.FunctionCallbackWrapper;
 import org.springframework.ai.openai.OpenAiChatOptions;
@@ -42,7 +43,11 @@ public class OpenAIService implements AIService {
                 .withFunctionCallbacks(List.of(functionCallbackWrapper))
                 .build();
         Message userMessage = new PromptTemplate(question.question()).createMessage();
-        ChatResponse response = chatClient.call(new Prompt(userMessage, promptOptions));
+
+        Message systemMessage = new SystemPromptTemplate("You are a weather service. You receive weather information from a service which gives you the information based on the metrics system." +
+                " When answering the weather in an imperial system country, you should convert the temperature to Fahrenheit and the wind speed to miles per hour. Time should be in the local time.").createMessage();
+
+        ChatResponse response = chatClient.call(new Prompt(List.of(userMessage, systemMessage), promptOptions));
         return new Answer(response.getResult().getOutput().getContent());
     }
 
