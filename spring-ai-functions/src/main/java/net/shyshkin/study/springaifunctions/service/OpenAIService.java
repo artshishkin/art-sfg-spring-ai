@@ -11,6 +11,7 @@ import org.springframework.ai.chat.ChatResponse;
 import org.springframework.ai.chat.messages.Message;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.chat.prompt.PromptTemplate;
+import org.springframework.ai.model.ModelOptionsUtils;
 import org.springframework.ai.model.function.FunctionCallbackWrapper;
 import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,11 @@ public class OpenAIService implements AIService {
         FunctionCallbackWrapper<WeatherRequest, WeatherResponse> functionCallbackWrapper = FunctionCallbackWrapper.builder(new WeatherServiceFunction(restClient))
                 .withName("CurrentWeather")
                 .withDescription("Get the current weather for a location")
+                .withResponseConverter(response -> {
+                    String schema = ModelOptionsUtils.getJsonSchema(WeatherResponse.class, false);
+                    String json = ModelOptionsUtils.toJsonString(response);
+                    return schema + "\n" + json;
+                })
                 .build();
         OpenAiChatOptions promptOptions = OpenAiChatOptions.builder()
                 .withFunctionCallbacks(List.of(functionCallbackWrapper))
