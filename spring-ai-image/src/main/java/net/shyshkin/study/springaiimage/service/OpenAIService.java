@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class OpenAIService implements AIService {
 
     @Override
-    public Object getImage(Question question) {
+    public byte[] getImage(Question question) {
         throw new RuntimeException("NOT IMPLEMENTED YET");
     }
 }
