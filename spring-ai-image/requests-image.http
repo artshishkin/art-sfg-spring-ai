@@ -27,6 +27,6 @@ POST http://localhost:8080/image
 Content-Type: application/json
 
 {
-  "question": "Woman with long brown hair is falling into the red wine. She is small enough to be whole in the glass of wine (like a fairy person). This woman is IT specialist in the field of data analytics. She is holding open laptop. She is mad because she does not know what should she answer to the stupid client"
+  "question": "Woman with long brown hair is falling into the red wine. She is small enough to be whole in the glass of wine. This woman is IT specialist in the field of data analytics. She is holding open laptop. She is mad and angry because she does not know what should she answer to the stupid client. There should be Power Bi Graph Dashboards on the background"
 }
 

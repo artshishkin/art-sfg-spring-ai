@@ -20,6 +20,7 @@ public class OpenAIService implements AIService {
                 .withHeight(1024)
                 .withWidth(1024)
                 .withResponseFormat("b64_json")
+                .withModel("dall-e-3")
                 .build();
 
         ImagePrompt imagePrompt = new ImagePrompt(question.question(), imageOptions);
