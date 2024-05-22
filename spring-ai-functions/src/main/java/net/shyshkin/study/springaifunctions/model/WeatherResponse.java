@@ -1,9 +1,12 @@
 package net.shyshkin.study.springaifunctions.model;
 
 import com.fasterxml.jackson.annotation.JsonPropertyDescription;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
 import java.math.BigDecimal;
 
+@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public record WeatherResponse(@JsonPropertyDescription("WindSpeed in KMH") BigDecimal windSpeed,
                               @JsonPropertyDescription("Direction of wind") Integer windDegrees,
                               @JsonPropertyDescription("Current Temperature in Celsius") Integer temp,

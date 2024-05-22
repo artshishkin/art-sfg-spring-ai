@@ -21,3 +21,45 @@ Content-Type: application/json
 {
   "question": "Tell me about the current weather in Vilnius as in a tale (in Ukrainian language)"
 }
+
+### Weather in New York Ukraine
+POST http://localhost:8080/weather
+Content-Type: application/json
+
+{
+  "question": "What do you know about the current weather in New York (state Ukraine)? I want maximum of useful info"
+}
+
+### Weather in New York USA
+POST http://localhost:8080/weather
+Content-Type: application/json
+
+{
+  "question": "What do you know about the current weather in New York (USA)? I want maximum of useful info"
+}
+
+### Weather in London - max
+POST http://localhost:8080/weather
+Content-Type: application/json
+
+{
+  "question": "What do you know about the current weather in London? I want maximum of useful info"
+}
+
+### Call Weather API directly
+GET https://api.api-ninjas.com/v1/weather?city=London
+X-Api-Key: {{ninja_api_key}}
+
+### Call Weather API directly - New York (Ukraine)
+GET https://api.api-ninjas.com/v1/weather?city=New York&state=Ukraine
+X-Api-Key: {{ninja_api_key}}
+
+
+### Weather in Tampa
+POST http://localhost:8080/weather
+Content-Type: application/json
+
+{
+  "question": "What do you know about the current weather in Tampa (USA)? I want maximum of useful info"
+}
+

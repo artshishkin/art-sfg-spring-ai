@@ -17,7 +17,7 @@ public class WeatherServiceFunction implements Function<WeatherRequest, WeatherR
 
     @Override
     public WeatherResponse apply(WeatherRequest weatherRequest) {
-        return restClient.get()
+        WeatherResponse body = restClient.get()
                 .uri(uriBuilder -> {
                     log.info("Building URI for weather request : {}", weatherRequest);
                     uriBuilder.queryParam("city", weatherRequest.location());
@@ -25,12 +25,13 @@ public class WeatherServiceFunction implements Function<WeatherRequest, WeatherR
                         uriBuilder.queryParam("state", weatherRequest.state());
                     }
                     if (StringUtils.hasText(weatherRequest.country())) {
-                        uriBuilder.queryParam("state", weatherRequest.country());
+                        uriBuilder.queryParam("country", weatherRequest.country());
                     }
                     return uriBuilder.build();
                 })
                 .retrieve()
                 .body(WeatherResponse.class);
+        return body;
     }
 
 }
