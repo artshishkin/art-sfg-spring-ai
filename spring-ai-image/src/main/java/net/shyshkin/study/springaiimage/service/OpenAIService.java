@@ -9,6 +9,7 @@ import org.springframework.ai.image.ImagePrompt;
 import org.springframework.ai.image.ImageResponse;
 import org.springframework.ai.openai.OpenAiImageOptions;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Base64;
 
@@ -35,5 +36,10 @@ public class OpenAIService implements AIService {
 
         String b64Json = response.getResult().getOutput().getB64Json();
         return Base64.getDecoder().decode(b64Json);
+    }
+
+    @Override
+    public String getDescription(MultipartFile file) {
+        return file.getOriginalFilename();
     }
 }

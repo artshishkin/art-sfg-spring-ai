@@ -4,3 +4,11 @@ spring:
     openai:
       #Pass API key as environment variable, e.g. -DOPENAI_API_KEY=your-api-key
       api-key: ${OPENAI_API_KEY}
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 10MB
+server:
+  tomcat:
+    max-swallow-size: 100MB
+
