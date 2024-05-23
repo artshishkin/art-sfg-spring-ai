@@ -3,12 +3,12 @@ package net.shyshkin.study.springaiimage.service;
 
 import lombok.RequiredArgsConstructor;
 import net.shyshkin.study.springaiimage.model.Question;
-import org.springframework.ai.chat.ChatClient;
+import org.springframework.ai.chat.ChatModel;
 import org.springframework.ai.chat.ChatResponse;
 import org.springframework.ai.chat.messages.Media;
 import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.ai.chat.prompt.Prompt;
-import org.springframework.ai.image.ImageClient;
+import org.springframework.ai.image.ImageModel;
 import org.springframework.ai.image.ImageOptions;
 import org.springframework.ai.image.ImagePrompt;
 import org.springframework.ai.image.ImageResponse;
@@ -26,8 +26,8 @@ import java.util.Base64;
 @RequiredArgsConstructor
 public class OpenAIService implements AIService {
 
-    private final ImageClient imageClient;
-    private final ChatClient chatClient;
+    private final ImageModel imageModel;
+    private final ChatModel chatModel;
 
     @Override
     public byte[] getImage(Question question) {
@@ -42,7 +42,7 @@ public class OpenAIService implements AIService {
                 .build();
 
         ImagePrompt imagePrompt = new ImagePrompt(question.question(), imageOptions);
-        ImageResponse response = imageClient.call(imagePrompt);
+        ImageResponse response = imageModel.call(imagePrompt);
 
         String b64Json = response.getResult().getOutput().getB64Json();
         return Base64.getDecoder().decode(b64Json);
@@ -58,7 +58,7 @@ public class OpenAIService implements AIService {
                 "Explain what do you see in this picture", //content
                 new Media(MimeTypeUtils.IMAGE_PNG, file.getResource()) //media
         );
-        ChatResponse response = chatClient.call(new Prompt(userMessage, chatOptions));
+        ChatResponse response = chatModel.call(new Prompt(userMessage, chatOptions));
         return response.getResult().getOutput().toString();
     }
 }
