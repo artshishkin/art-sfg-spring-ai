@@ -39,3 +39,24 @@ Content-Type: application/json
 }
 
 
+### Vision description
+POST http://localhost:8080/vision
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="coinbase_api_awesome_stuck.png"
+Content-Type: image/png
+
+< ./coinbase_api_awesome_stuck.png
+
+--WebAppBoundary--
+
+### From Vision description
+POST http://localhost:8080/image
+Content-Type: application/json
+
+{
+  "question": "In this image, there's an illustration of a man sitting at a desk in a state of distress or frustration. He's holding his head with one hand, and in front of him, there are three computer monitors displaying various types of code and graphs that seem to be related to cryptocurrency trading or blockchain technology. On the leftmost monitor, it shows what appears to be a code editor with various functions and comments written in a playful, jumbled manner that mimics programming syntax but doesn't make actual sense. The center monitor has a trading interface with graphs and numerical data, while the rightmost monitor has a list of tasks with some items checked off, again with nonsensical phrases that are related to trading and coding, but are jumbled. On the desk, there are several stacks of coins, suggesting a focus on wealth or the accumulation of cryptocurrency. Additionally, there are a few cardboard boxes on the floor with symbols that resemble cryptocurrency logos, further emphasizing the theme of digital finance. The illustration overall seems to depict a scene of a cryptocurrency trader or coder who is experiencing a moment of overwhelm or confusion, possibly due to market volatility or coding challenges. The playful and exaggerated nature of the text and imagery suggests this is a creative and humorous take on the subject."
+}
+
+
